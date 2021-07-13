@@ -42,7 +42,13 @@ jobs:
         run: "composer install --no-interaction --no-progress --no-suggest"
 
       - name: "Update SDK Models"
-        run: "composer generate"
+        run: "sudo composer generate"
+
+      - name: test
+        run: whoami
+
+      - name: test
+        run: ls -lah
 
       - name: "Git status"
         run: "git status"
