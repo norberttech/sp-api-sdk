@@ -41,19 +41,26 @@ jobs:
       - name: "Install locked dependencies"
         run: "composer install --no-interaction --no-progress --no-suggest"
 
+      - name: "test"
+        run: "wohami"
+
+      - name: "test"
+        run: "ls -lah"
+
+      - name: "Setup right folder permissions"
+        run: "sudo chmod -R g+w ."
+
+      - name: "test"
+        run: "ls -lah"
+
       - name: "Update SDK Models"
         run: "sudo composer generate"
-
-      - name: test
-        run: whoami
-
-      - name: test
-        run: ls -lah
 
       - name: "Git status"
         run: "git status"
 
       - name: "Create Pull Request"
+        id: cpr
         uses: peter-evans/create-pull-request@v3
         with:
           commit-message: "Updated SDK Models"
@@ -62,6 +69,9 @@ jobs:
           signoff: false
           branch: update/sdk-models
           title: "Updated SDK Models"
+          assignees: norberttech
+          reviewers: norberttech
+          draft: false
 
       - name: "Check output"
         run: |
